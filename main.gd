@@ -14,7 +14,3 @@ func _ready():
 	  ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0']]
 	var astar = AStar.new(b)
 	var paths = astar.find_path(Point.new(1,1), Point.new(8,8))
-	if !paths: 
-		return
-	for path in paths: 
-		print(path.x, " ", path.y)

@@ -11,6 +11,9 @@ var cost_tracker = {}
 var evaluated = []
 var board = null
 
+var scans = []
+var paths = []
+
 func _init(b):
 	board = b
 
@@ -40,15 +43,14 @@ func cal_cost(curr: Point, start: Point, end: Point)->float:
 func trace_path(target: Point):
 	if (target == null):
 		return null
-
-	var result = []
+	
+	paths = []
 	var curr = target
-	result.push_back(curr)  
+	paths.push_front(curr)  
 
 	while (curr.parent != null):
 		curr = curr.parent
-		result.push_back(curr)
-	return result
+		paths.push_front(curr)
 
 func find_path(start: Point, end: Point):
 	cost_tracker = {}
@@ -71,12 +73,16 @@ func find_path(start: Point, end: Point):
 				evaluated.push_back(neighbor)
 
 		target = get_lowest_cost_point()
+		if target: 
+			scans.push_back(target)
 #		if(target):
 #			print(target.x, " ", target.y)
 			
 	if (!target.eq(end)):
 		return null
-	return trace_path(target)
+		
+	trace_path(target)
+	
 
 func is_visited(p: Point):
 	for val in evaluated: 

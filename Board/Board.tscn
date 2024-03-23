@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7blrew6lw0w"]
+
+[ext_resource type="Script" path="res://Board/Board.gd" id="1_kkxun"]
+[ext_resource type="PackedScene" uid="uid://dnx2pridtgsqf" path="res://UI/NodeSelector.tscn" id="2_cevn8"]
+
+[node name="Board" type="Node2D"]
+position = Vector2(222, 126)
+script = ExtResource("1_kkxun")
+
+[node name="cells" type="Node2D" parent="."]
+
+[node name="NodeSelector" parent="." instance=ExtResource("2_cevn8")]
+offset_left = -121.0
+offset_top = -105.0
+offset_right = -16.0
+offset_bottom = -74.0
+selected = 0
+
+[node name="Scan" type="Button" parent="."]
+offset_left = 16.0
+offset_top = -100.0
+offset_right = 61.0
+offset_bottom = -69.0
+text = "Scan"
+
+[node name="Find path" type="Button" parent="."]
+offset_left = 90.0
+offset_top = -102.0
+offset_right = 171.0
+offset_bottom = -71.0
+text = "Find Path"
+
+[node name="Reset" type="Button" parent="."]
+offset_left = 200.0
+offset_top = -103.0
+offset_right = 281.0
+offset_bottom = -72.0
+text = "Reset"
+
+[node name="pathtimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="pressed" from="Scan" to="." method="_on_scan_pressed"]
+[connection signal="pressed" from="Find path" to="." method="_on_find_path_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_find_path_2_pressed"]
